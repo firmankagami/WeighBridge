@@ -1,0 +1,49 @@
+{
+  "project_info": {
+    "project_number": "810183335945",
+    "firebase_url": "https://weighbridge-a20f0-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "weighbridge-a20f0",
+    "storage_bucket": "weighbridge-a20f0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:810183335945:android:5293de6004d0e68f6618d8",
+        "android_client_info": {
+          "package_name": "com.firmanda.weighbridge"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDq1mF7H3ZhoGfgnS_QAbNACq5bqmb1Gvc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:810183335945:android:7aef778706f700b56618d8",
+        "android_client_info": {
+          "package_name": "com.firmanda.weighbrigde"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDq1mF7H3ZhoGfgnS_QAbNACq5bqmb1Gvc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
