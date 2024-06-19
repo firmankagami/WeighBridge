@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.firmanda.weighbridge.R
 import com.firmanda.weighbridge.databinding.FragmentMainBinding
 import com.firmanda.weighbridge.model.WeighBridgeModel
+import com.firmanda.weighbridge.service.WeighBrigdeService
 import com.firmanda.weighbridge.ui.listener.ItemListener
 import com.firmanda.weighbridge.util.Result
 import com.firmanda.weighbridge.viewmodel.WeighBridgesViewModel
@@ -20,6 +21,9 @@ import javax.inject.Inject
 
 
 class MainFragment : Fragment(), ItemListener {
+
+    @Inject
+    lateinit var service: WeighBrigdeService
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory

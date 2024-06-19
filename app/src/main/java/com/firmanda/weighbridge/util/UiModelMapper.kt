@@ -13,8 +13,8 @@ class UiModelMapper {
             WeighBridgeModel(
                 dateTime = dateTimeFormatter(it.dateTime),
                 driverNameLicense = it.driverName +" - "+it.license,
-                inboundOutbound = "Inbound: "+ it.inbound+ " Outbound:"+it.outbound+" ",
-                nettWeigh = "Nett: "+(it.inbound  - it.outbound)
+                inboundOutbound = "Inbound: "+ it.inbound+ " Ton, Outbound:"+it.outbound+" Ton ",
+                nettWeigh = "Nett: "+(it.inbound  - it.outbound) +" Ton"
             )
         } ?: mutableListOf()
     }
