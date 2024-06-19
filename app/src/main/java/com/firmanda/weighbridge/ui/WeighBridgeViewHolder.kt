@@ -2,18 +2,24 @@ package com.firmanda.weighbridge.ui
 
 import androidx.recyclerview.widget.RecyclerView
 import com.firmanda.weighbridge.databinding.ItemTicketsBinding
-import com.firmanda.weighbridge.model.WeighBrigdeModel
+import com.firmanda.weighbridge.model.WeighBridgeModel
+import com.firmanda.weighbridge.ui.listener.ItemListener
 
 class WeighBridgeViewHolder (
-    private val binding: ItemTicketsBinding
+    private val binding: ItemTicketsBinding,
+    private val listener: ItemListener
 ): RecyclerView.ViewHolder(binding.root) {
 
-    fun bind(model: WeighBrigdeModel) {
+    fun bind(model: WeighBridgeModel) {
         with(binding) {
             tvDate.text = model.dateTime
-            tvNett.text= model.nettWeigh.toString()
+            tvNett.text= model.nettWeigh
             tvDriverNamePlate.text= model.driverNameLicense
             tvInboundOutbound.text = model.inboundOutbound
+
+            root.setOnClickListener {
+                listener.onClickDialog(model)
+            }
         }
     }
 }

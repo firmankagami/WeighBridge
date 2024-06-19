@@ -4,13 +4,15 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.firmanda.weighbridge.databinding.ItemTicketsBinding
-import com.firmanda.weighbridge.model.WeighBrigdeModel
+import com.firmanda.weighbridge.model.WeighBridgeModel
+import com.firmanda.weighbridge.ui.listener.ItemListener
 
-class WeighBridgeAdapter : RecyclerView.Adapter<WeighBridgeViewHolder>() {
+class WeighBridgeAdapter(private val listener: ItemListener):
+    RecyclerView.Adapter<WeighBridgeViewHolder>() {
 
-    private var listTickets: MutableList<WeighBrigdeModel> = mutableListOf()
+    private var listTickets: MutableList<WeighBridgeModel> = mutableListOf()
 
-    fun updateData(list: List<WeighBrigdeModel>) {
+    fun updateData(list: List<WeighBridgeModel>) {
         this.listTickets = list.toMutableList()
         notifyItemRangeChanged(0, listTickets.size)
     }
@@ -29,6 +31,6 @@ class WeighBridgeAdapter : RecyclerView.Adapter<WeighBridgeViewHolder>() {
             parent,
             false
         )
-        return WeighBridgeViewHolder(binding)
+        return WeighBridgeViewHolder(binding, listener)
     }
 }

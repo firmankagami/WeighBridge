@@ -1,16 +1,16 @@
 package com.firmanda.weighbridge.util
 
 import com.firmanda.weighbridge.data.WeighBrigde
-import com.firmanda.weighbridge.model.WeighBrigdeModel
+import com.firmanda.weighbridge.model.WeighBridgeModel
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 
 class UiModelMapper {
 
-    fun uiMapper(responses: List<WeighBrigde>?): List<WeighBrigdeModel> {
+    fun uiMapper(responses: List<WeighBrigde>?): List<WeighBridgeModel> {
         return responses?.map {
-            WeighBrigdeModel(
+            WeighBridgeModel(
                 dateTime = dateTimeFormatter(it.dateTime),
                 driverNameLicense = it.driverName +" - "+it.license,
                 inboundOutbound = "Inbound: "+ it.inbound+ " Outbound:"+it.outbound+" ",

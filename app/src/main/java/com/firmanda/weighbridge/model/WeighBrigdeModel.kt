@@ -1,6 +1,6 @@
 package com.firmanda.weighbridge.model
 
-data class WeighBrigdeModel(
+data class WeighBridgeModel(
     val dateTime: String = "",
     val driverNameLicense: String = "",
     val inboundOutbound: String = "",

@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">WeighBridge</string>
     <string name="error_message">Error happen, please click here to reload</string>
-    <string name="view">View</string>
+    <string name="view">Edit</string>
     <string name="create">Create</string>
     <string name="lorem_date">5 hours ago</string>
     <string name="lorem">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim a</string>

@@ -1,21 +1,25 @@
 package com.firmanda.weighbridge.ui
 
+import android.app.AlertDialog
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.firmanda.weighbridge.data.WeighBrigde
+import com.firmanda.weighbridge.R
 import com.firmanda.weighbridge.databinding.FragmentMainBinding
-import com.firmanda.weighbridge.model.WeighBrigdeModel
-import com.firmanda.weighbridge.viewmodel.WeighBridgesViewModel
+import com.firmanda.weighbridge.model.WeighBridgeModel
+import com.firmanda.weighbridge.ui.listener.ItemListener
 import com.firmanda.weighbridge.util.Result
+import com.firmanda.weighbridge.viewmodel.WeighBridgesViewModel
 import javax.inject.Inject
 
-class MainFragment : Fragment() {
+
+class MainFragment : Fragment(), ItemListener {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
@@ -44,6 +48,43 @@ class MainFragment : Fragment() {
         loadTickets()
     }
 
+    override fun onCreateTicket() {
+        //create ticket
+    }
+
+    override fun onClickDialog(ticket: WeighBridgeModel) {
+        showDialog(ticket)
+    }
+
+    override fun onEditTicket(ticket: WeighBridgeModel) {
+        //edit ticket
+    }
+
+    private fun showDialog(ticket: WeighBridgeModel) {
+        val inflater = layoutInflater
+        val dialogView = inflater.inflate(R.layout.dialog_ticket, null)
+
+        val tvNett: TextView = dialogView.findViewById(R.id.tv_nett)
+        val tvDate: TextView = dialogView.findViewById(R.id.tv_date)
+        val tvDriverNamePlate: TextView = dialogView.findViewById(R.id.tv_driver_name_plate)
+        val tvInboundOutbound: TextView = dialogView.findViewById(R.id.tv_inbound_outbound)
+
+        tvNett.text = ticket.nettWeigh
+        tvDate.text = ticket.dateTime
+        tvDriverNamePlate.text = ticket.driverNameLicense
+        tvInboundOutbound.text = ticket.inboundOutbound
+
+        val builder = AlertDialog.Builder(context).apply {
+            setView(dialogView)
+            setTitle("Detail Ticket")
+            setPositiveButton("OK") { dialog, id ->
+            }
+        }
+
+        val dialog = builder.create()
+        dialog.show()
+    }
+
     private fun loadTickets() {
         stateLoading()
         viewModel.getListTickets().observe(viewLifecycleOwner) { result ->
@@ -60,9 +101,9 @@ class MainFragment : Fragment() {
     }
 
     private fun renderRecycleView(
-        list: List<WeighBrigdeModel>
+        list: List<WeighBridgeModel>
     ) {
-        val weighBridgeAdapter = WeighBridgeAdapter()
+        val weighBridgeAdapter = WeighBridgeAdapter(this)
         binding.rvNews.apply {
             adapter = weighBridgeAdapter
             layoutManager = LinearLayoutManager(context)
@@ -97,7 +138,7 @@ class MainFragment : Fragment() {
         binding.rvNews.visibility = View.GONE
     }
 
-    private fun showListNews(list: List<WeighBrigdeModel>) {
+    private fun showListNews(list: List<WeighBridgeModel>) {
         renderRecycleView(list)
         binding.rvNews.visibility = View.VISIBLE
     }
@@ -114,7 +155,7 @@ class MainFragment : Fragment() {
         showErrorMessage()
     }
 
-    private fun stateSuccess(list: List<WeighBrigdeModel>) {
+    private fun stateSuccess(list: List<WeighBridgeModel>) {
         hideLoading()
         showListNews(list)
         hideErrorMessage()
