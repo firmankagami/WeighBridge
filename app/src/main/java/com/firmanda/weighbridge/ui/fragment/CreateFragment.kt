@@ -17,6 +17,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.firmanda.weighbridge.data.WeighBrigde
 import com.firmanda.weighbridge.databinding.FragmentCreateBinding
 import com.firmanda.weighbridge.ui.CreateActivity
+import com.firmanda.weighbridge.util.RESULT_OK
 import com.firmanda.weighbridge.util.Result
 import com.firmanda.weighbridge.viewmodel.CreateViewModel
 import java.text.SimpleDateFormat
@@ -112,6 +113,8 @@ class CreateFragment : Fragment(), DatePickerDialog.OnDateSetListener,
         viewModel.createTicket(ticket).observe(viewLifecycleOwner) { result ->
             when (result) {
                 is Result.Success -> {
+                    val intent = activity?.intent
+                    activity?.setResult(RESULT_OK, intent)
                     activity?.finish()
                 }
 

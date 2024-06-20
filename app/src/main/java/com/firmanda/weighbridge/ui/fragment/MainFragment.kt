@@ -18,6 +18,8 @@ import com.firmanda.weighbridge.ui.MainActivity
 import com.firmanda.weighbridge.ui.ViewEditActivity
 import com.firmanda.weighbridge.ui.adapter.WeighBridgeAdapter
 import com.firmanda.weighbridge.ui.listener.ItemListener
+import com.firmanda.weighbridge.util.NUMBER_EXTRA
+import com.firmanda.weighbridge.util.RESULT_OK
 import com.firmanda.weighbridge.util.Result
 import com.firmanda.weighbridge.util.TICKET_EXTRA
 import com.firmanda.weighbridge.viewmodel.WeighBridgesViewModel
@@ -55,7 +57,7 @@ class MainFragment : Fragment(), ItemListener {
 
     override fun onCreateTicket() {
         val intent = Intent(context, CreateActivity::class.java)
-        startActivity(intent)
+        startActivityForResult(intent, NUMBER_EXTRA)
     }
 
     override fun onClickDialog(ticket: WeighBridgeModel) {
@@ -65,7 +67,13 @@ class MainFragment : Fragment(), ItemListener {
     override fun onEditTicket(ticket: WeighBridgeModel) {
         val intent = Intent(context, ViewEditActivity::class.java)
         intent.putExtra(TICKET_EXTRA, ticket)
-        startActivity(intent)
+        startActivityForResult(intent, NUMBER_EXTRA)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (requestCode == NUMBER_EXTRA  && resultCode  == RESULT_OK) {
+            loadTickets()
+        }
     }
 
     private fun showDialog(ticket: WeighBridgeModel) {

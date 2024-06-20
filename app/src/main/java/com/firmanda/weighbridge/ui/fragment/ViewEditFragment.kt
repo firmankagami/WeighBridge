@@ -3,6 +3,7 @@ package com.firmanda.weighbridge.ui.fragment
 import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
+import android.content.Intent.getIntent
 import android.os.Bundle
 import android.text.format.DateFormat
 import android.view.LayoutInflater
@@ -18,6 +19,7 @@ import com.firmanda.weighbridge.data.WeighBrigde
 import com.firmanda.weighbridge.databinding.FragmentVieweditBinding
 import com.firmanda.weighbridge.model.WeighBridgeModel
 import com.firmanda.weighbridge.ui.ViewEditActivity
+import com.firmanda.weighbridge.util.RESULT_OK
 import com.firmanda.weighbridge.util.Result
 import com.firmanda.weighbridge.util.TICKET_EXTRA
 import com.firmanda.weighbridge.viewmodel.ViewEditViewModel
@@ -28,6 +30,7 @@ import java.util.Calendar
 import java.util.Date
 import java.util.Locale
 import javax.inject.Inject
+
 
 class ViewEditFragment: Fragment(), DatePickerDialog.OnDateSetListener,
     TimePickerDialog.OnTimeSetListener{
@@ -137,6 +140,8 @@ class ViewEditFragment: Fragment(), DatePickerDialog.OnDateSetListener,
         viewModel.editTicket(id, ticket).observe(viewLifecycleOwner) { result ->
             when (result) {
                 is Result.Success -> {
+                    val intent = activity?.intent
+                    activity?.setResult(RESULT_OK, intent)
                     activity?.finish()
                 }
 
