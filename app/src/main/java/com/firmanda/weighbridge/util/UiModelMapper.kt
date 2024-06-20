@@ -8,15 +8,19 @@ import java.util.Locale
 
 class UiModelMapper {
 
-    fun uiMapper(responses: List<WeighBrigde>?): List<WeighBridgeModel> {
-        return responses?.map {
-            WeighBridgeModel(
-                dateTime = dateTimeFormatter(it.dateTime),
-                driverNameLicense = it.driverName +" - "+it.license,
-                inboundOutbound = "Inbound: "+ it.inbound+ " Ton, Outbound:"+it.outbound+" Ton ",
-                nettWeigh = "Nett: "+(it.inbound  - it.outbound) +" Ton"
-            )
-        } ?: mutableListOf()
+    fun uiMapper(id: String, response: WeighBrigde): WeighBridgeModel {
+        return WeighBridgeModel(
+            id = id,
+            dateTime = dateTimeFormatter(response.dateTime),
+            timeStamp = response.dateTime,
+            driverNameLicense = response.driverName + " - " + response.license,
+            driverName = response.driverName,
+            license = response.license,
+            inboundOutbound = "Inbound: " + response.inbound + " Ton, Outbound:" + response.outbound + " Ton ",
+            outbound = response.outbound,
+            inbound = response.inbound,
+            nettWeigh = "Nett: " + (response.inbound - response.outbound) + " Ton"
+        )
     }
 
     fun dateTimeFormatter(timestamp: Long): String {

@@ -19,12 +19,13 @@ class WeighBridgeRepositoryImpl @Inject constructor(
             if (task.isSuccessful) {
                 val result = task.result
                 result?.let {
-                    val ticketList = mutableListOf<WeighBrigde>()
+                    val ticketList = mutableListOf<WeighBridgeModel>()
                     for (ticketsSnapshot in it.children) {
                         val ticket = ticketsSnapshot.getValue(WeighBrigde::class.java)
-                        ticket?.let { ticketList.add(it) }
+                        val id = ticketsSnapshot.key ?: ""
+                        ticket?.let { ticketList.add(uiModelMapper.uiMapper(id, it)) }
                     }
-                    ticketListLiveData.value = Result.Success(uiModelMapper.uiMapper(ticketList))
+                    ticketListLiveData.value = Result.Success(ticketList)
                 }
             } else {
                 task.exception?.let {

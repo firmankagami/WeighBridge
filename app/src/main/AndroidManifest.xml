@@ -26,6 +26,11 @@
             android:name=".ui.CreateActivity"
             android:exported="true">
         </activity>
+        <activity
+            android:name=".ui.ViewEditActivity"
+            android:exported="true">
+        </activity>
+
     </application>
 
 </manifest>

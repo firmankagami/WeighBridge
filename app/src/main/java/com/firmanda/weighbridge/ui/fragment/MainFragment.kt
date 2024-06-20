@@ -15,9 +15,11 @@ import com.firmanda.weighbridge.databinding.FragmentMainBinding
 import com.firmanda.weighbridge.model.WeighBridgeModel
 import com.firmanda.weighbridge.ui.CreateActivity
 import com.firmanda.weighbridge.ui.MainActivity
+import com.firmanda.weighbridge.ui.ViewEditActivity
 import com.firmanda.weighbridge.ui.adapter.WeighBridgeAdapter
 import com.firmanda.weighbridge.ui.listener.ItemListener
 import com.firmanda.weighbridge.util.Result
+import com.firmanda.weighbridge.util.TICKET_EXTRA
 import com.firmanda.weighbridge.viewmodel.WeighBridgesViewModel
 import javax.inject.Inject
 
@@ -61,7 +63,9 @@ class MainFragment : Fragment(), ItemListener {
     }
 
     override fun onEditTicket(ticket: WeighBridgeModel) {
-        //edit ticket
+        val intent = Intent(context, ViewEditActivity::class.java)
+        intent.putExtra(TICKET_EXTRA, ticket)
+        startActivity(intent)
     }
 
     private fun showDialog(ticket: WeighBridgeModel) {
