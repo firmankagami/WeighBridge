@@ -140,7 +140,7 @@ class CreateFragment : Fragment(), DatePickerDialog.OnDateSetListener,
     override fun onDateSet(p0: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
         context?.let { context ->
             myDay = dayOfMonth
-            myMonth = month
+            myMonth = month + 1
             myYear = year
             val calendar: Calendar = Calendar.getInstance()
             hour = calendar.get(Calendar.HOUR)
@@ -159,7 +159,8 @@ class CreateFragment : Fragment(), DatePickerDialog.OnDateSetListener,
         myMinute = minute
         datePickerDialog?.dismiss()
         val localData =  LocalDateTime.of(myYear, myMonth, myDay, myHour, myMinute, 0)
-        timeStamp = localData.toEpochSecond(ZoneOffset.UTC)
+        val offsetPlus7 = ZoneOffset.ofHours(7)
+        timeStamp = localData.toEpochSecond(offsetPlus7)
 
         binding.etTime.setText(getFormattedDateTime(timeStamp))
     }
