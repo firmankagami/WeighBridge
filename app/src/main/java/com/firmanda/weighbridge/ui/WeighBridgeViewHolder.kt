@@ -20,6 +20,14 @@ class WeighBridgeViewHolder (
             root.setOnClickListener {
                 listener.onClickDialog(model)
             }
+
+            buttonCreate.setOnClickListener {
+                listener.onCreateTicket()
+            }
+
+            buttonView.setOnClickListener {
+                listener.onEditTicket(model)
+            }
         }
     }
 }

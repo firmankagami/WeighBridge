@@ -1,6 +1,7 @@
 package com.firmanda.weighbridge.ui
 
 import android.app.AlertDialog
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -53,7 +54,8 @@ class MainFragment : Fragment(), ItemListener {
     }
 
     override fun onCreateTicket() {
-        //create ticket
+        val intent = Intent(context, CreateActivity::class.java)
+        startActivity(intent)
     }
 
     override fun onClickDialog(ticket: WeighBridgeModel) {

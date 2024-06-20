@@ -21,7 +21,7 @@ class UiModelMapper {
 
     fun dateTimeFormatter(timestamp: Long): String {
         val date = Date(timestamp * 1000)
-        val formatter = SimpleDateFormat("dd MMMM yyyy HH:mm:ss", Locale.getDefault())
+        val formatter = SimpleDateFormat("dd MMMM yyyy HH:mm", Locale.getDefault())
         return formatter.format(date)
     }
 }

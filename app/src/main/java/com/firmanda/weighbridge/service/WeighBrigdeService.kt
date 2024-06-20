@@ -8,7 +8,6 @@ class WeighBrigdeService {
     private val databaseUrl = "https://weighbridge-a20f0-default-rtdb.asia-southeast1.firebasedatabase.app"
     private val database = Firebase.database(databaseUrl)
     val myRef = database.getReference("weighbrigdes")
-
     fun setOfflineMode() {
         Firebase.database.setPersistenceEnabled(true)
     }
