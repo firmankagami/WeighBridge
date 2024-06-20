@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.firmanda.weighbridge.util.ViewModelFactory
 import com.firmanda.weighbridge.util.ViewModelKey
 import com.firmanda.weighbridge.viewmodel.CreateViewModel
+import com.firmanda.weighbridge.viewmodel.ViewEditViewModel
 import com.firmanda.weighbridge.viewmodel.WeighBridgesViewModel
 import dagger.Binds
 import dagger.Module
@@ -27,4 +28,9 @@ abstract class WeighBridgeViewModelModule {
     @IntoMap
     @ViewModelKey(CreateViewModel::class)
     internal abstract fun bindCreateViewModel(viewModel: CreateViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(ViewEditViewModel::class)
+    internal abstract fun bindViewEditViewModel(viewModel: ViewEditViewModel): ViewModel
 }

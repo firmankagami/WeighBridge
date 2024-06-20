@@ -1,4 +1,4 @@
-package com.firmanda.weighbridge.ui
+package com.firmanda.weighbridge.ui.viewholder
 
 import androidx.recyclerview.widget.RecyclerView
 import com.firmanda.weighbridge.databinding.ItemTicketsBinding

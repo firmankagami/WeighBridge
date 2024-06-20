@@ -1,4 +1,4 @@
-package com.firmanda.weighbridge.ui
+package com.firmanda.weighbridge.ui.fragment
 
 import android.annotation.SuppressLint
 import android.app.DatePickerDialog
@@ -16,6 +16,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.firmanda.weighbridge.data.WeighBrigde
 import com.firmanda.weighbridge.databinding.FragmentCreateBinding
+import com.firmanda.weighbridge.ui.CreateActivity
 import com.firmanda.weighbridge.util.Result
 import com.firmanda.weighbridge.viewmodel.CreateViewModel
 import java.text.SimpleDateFormat
@@ -93,7 +94,7 @@ class CreateFragment : Fragment(), DatePickerDialog.OnDateSetListener,
         val inbound = binding.etInbound.text.toString()
         val outbound = binding.etOutbound.text.toString()
 
-        if (name.isEmpty() || license.isEmpty() || inbound.isEmpty() || outbound.isEmpty() || timeStamp > 0) {
+        if (name.isEmpty() || license.isEmpty() || inbound.isEmpty() || outbound.isEmpty() || timeStamp <= 0) {
             Toast.makeText(context, "Fill the empty field(s)", Toast.LENGTH_LONG).show()
         } else {
             val ticket = WeighBrigde(

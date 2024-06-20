@@ -1,7 +1,8 @@
 package com.firmanda.weighbridge.di
 
-import com.firmanda.weighbridge.ui.CreateFragment
-import com.firmanda.weighbridge.ui.MainFragment
+import com.firmanda.weighbridge.ui.fragment.CreateFragment
+import com.firmanda.weighbridge.ui.fragment.MainFragment
+import com.firmanda.weighbridge.ui.fragment.ViewEditFragment
 import dagger.Component
 
 @Component(
@@ -14,4 +15,5 @@ import dagger.Component
 interface WeighBridgeComponent {
     fun inject(mainFragment: MainFragment)
     fun inject(createFragment: CreateFragment)
+    fun inject(viewEditFragment: ViewEditFragment)
 }

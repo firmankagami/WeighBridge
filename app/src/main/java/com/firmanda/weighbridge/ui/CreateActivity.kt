@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import com.firmanda.weighbridge.R
 import com.firmanda.weighbridge.di.DaggerWeighBridgeComponent
 import com.firmanda.weighbridge.di.WeighBridgeComponent
+import com.firmanda.weighbridge.ui.fragment.CreateFragment
 
 class CreateActivity: AppCompatActivity() {
 
@@ -14,7 +15,7 @@ class CreateActivity: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         inject()
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_create)
+        setContentView(R.layout.activity_main)
         setFragment(CreateFragment())
     }
 

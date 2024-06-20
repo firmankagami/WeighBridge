@@ -6,9 +6,9 @@ import androidx.fragment.app.Fragment
 import com.firmanda.weighbridge.R
 import com.firmanda.weighbridge.di.DaggerWeighBridgeComponent
 import com.firmanda.weighbridge.di.WeighBridgeComponent
-import com.firmanda.weighbridge.ui.fragment.MainFragment
+import com.firmanda.weighbridge.ui.fragment.ViewEditFragment
 
-class MainActivity: AppCompatActivity() {
+class ViewEditActivity: AppCompatActivity() {
 
     lateinit var weighBridgeComponent: WeighBridgeComponent
 
@@ -16,7 +16,7 @@ class MainActivity: AppCompatActivity() {
         inject()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        setFragment(MainFragment())
+        setFragment(ViewEditFragment())
     }
 
     private fun setFragment(fragment: Fragment) {

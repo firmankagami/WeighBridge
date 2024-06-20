@@ -1,10 +1,11 @@
-package com.firmanda.weighbridge.ui
+package com.firmanda.weighbridge.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.firmanda.weighbridge.databinding.ItemTicketsBinding
 import com.firmanda.weighbridge.model.WeighBridgeModel
+import com.firmanda.weighbridge.ui.viewholder.WeighBridgeViewHolder
 import com.firmanda.weighbridge.ui.listener.ItemListener
 
 class WeighBridgeAdapter(private val listener: ItemListener):
