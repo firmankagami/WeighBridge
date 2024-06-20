@@ -5,5 +5,5 @@ import com.firmanda.weighbridge.model.WeighBridgeModel
 import com.firmanda.weighbridge.util.Result
 
 interface WeighBridgeRepository {
-    fun getListWeighBridge(): MutableLiveData<Result<List<WeighBridgeModel>>>
+    fun getListWeighBridge(sortType: String): MutableLiveData<Result<List<WeighBridgeModel>>>
 }

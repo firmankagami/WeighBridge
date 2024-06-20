@@ -11,4 +11,7 @@
     <string name="lorem_date">5 hours ago</string>
     <string name="lorem">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim a</string>
     <string name="edit">Edit</string>
+    <string name="menu_date">Date</string>
+    <string name="menu_name">Name</string>
+    <string name="menu_license">License</string>
 </resources>

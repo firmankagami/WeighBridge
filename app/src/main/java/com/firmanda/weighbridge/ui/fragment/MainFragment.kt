@@ -4,6 +4,9 @@ import android.app.AlertDialog
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
@@ -21,6 +24,9 @@ import com.firmanda.weighbridge.ui.listener.ItemListener
 import com.firmanda.weighbridge.util.NUMBER_EXTRA
 import com.firmanda.weighbridge.util.RESULT_OK
 import com.firmanda.weighbridge.util.Result
+import com.firmanda.weighbridge.util.SORT_DATE
+import com.firmanda.weighbridge.util.SORT_LICENSE
+import com.firmanda.weighbridge.util.SORT_NAME
 import com.firmanda.weighbridge.util.TICKET_EXTRA
 import com.firmanda.weighbridge.viewmodel.WeighBridgesViewModel
 import javax.inject.Inject
@@ -33,10 +39,12 @@ class MainFragment : Fragment(), ItemListener {
     private lateinit var viewModel: WeighBridgesViewModel
 
     private lateinit var binding: FragmentMainBinding
+    private var selectedSort = SORT_DATE
 
     override fun onCreate(savedInstanceState: Bundle?) {
         initInjector()
         super.onCreate(savedInstanceState)
+        setHasOptionsMenu(true)
         val viewModelProvider = ViewModelProvider(this, viewModelFactory)
         viewModel = viewModelProvider[WeighBridgesViewModel::class.java]
     }
@@ -76,6 +84,27 @@ class MainFragment : Fragment(), ItemListener {
         }
     }
 
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.menu_item, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId) {
+            R.id.action_date -> {
+                selectedSort = SORT_DATE
+            }
+            R.id.action_name -> {
+                selectedSort = SORT_NAME
+            }
+            R.id.action_license -> {
+                selectedSort = SORT_LICENSE
+            }
+        }
+        loadTickets()
+        return true
+    }
+
     private fun showDialog(ticket: WeighBridgeModel) {
         val inflater = layoutInflater
         val dialogView = inflater.inflate(R.layout.dialog_ticket, null)
@@ -103,7 +132,7 @@ class MainFragment : Fragment(), ItemListener {
 
     private fun loadTickets() {
         stateLoading()
-        viewModel.getListTickets().observe(viewLifecycleOwner) { result ->
+        viewModel.getListTickets(selectedSort).observe(viewLifecycleOwner) { result ->
             when (result) {
                 is Result.Success -> {
                    stateSuccess(result.data)

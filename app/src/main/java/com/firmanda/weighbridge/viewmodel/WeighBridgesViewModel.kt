@@ -11,7 +11,7 @@ class WeighBridgesViewModel @Inject constructor(
     private val weighBridgeRepository: WeighBridgeRepository
 ): ViewModel() {
 
-    fun getListTickets(): LiveData<Result<List<WeighBridgeModel>>> {
-        return weighBridgeRepository.getListWeighBridge()
+    fun getListTickets(sortType: String): LiveData<Result<List<WeighBridgeModel>>> {
+        return weighBridgeRepository.getListWeighBridge(sortType)
     }
 }

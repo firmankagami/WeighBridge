@@ -13,7 +13,7 @@ class WeighBridgeRepositoryImpl @Inject constructor(
     private val uiModelMapper: UiModelMapper
 ) : WeighBridgeRepository {
 
-    override fun getListWeighBridge(): MutableLiveData<Result<List<WeighBridgeModel>>> {
+    override fun getListWeighBridge(sortType: String): MutableLiveData<Result<List<WeighBridgeModel>>> {
         val ticketListLiveData = MutableLiveData<Result<List<WeighBridgeModel>>>()
         service.myRef.get().addOnCompleteListener { task ->
             if (task.isSuccessful) {
@@ -25,7 +25,7 @@ class WeighBridgeRepositoryImpl @Inject constructor(
                         val id = ticketsSnapshot.key ?: ""
                         ticket?.let { ticketList.add(uiModelMapper.uiMapper(id, it)) }
                     }
-                    ticketListLiveData.value = Result.Success(ticketList)
+                    ticketListLiveData.value = Result.Success(uiModelMapper.uiSort(sortType, ticketList))
                 }
             } else {
                 task.exception?.let {

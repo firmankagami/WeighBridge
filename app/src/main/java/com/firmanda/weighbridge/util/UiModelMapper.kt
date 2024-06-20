@@ -23,6 +23,28 @@ class UiModelMapper {
         )
     }
 
+    fun uiSort(sortType: String, responses: List<WeighBridgeModel>): List<WeighBridgeModel> {
+        val sortedList = when (sortType) {
+            SORT_DATE -> {
+                responses.sortedByDescending {
+                    it.timeStamp
+                }
+            }
+            SORT_NAME -> {
+                responses.sortedBy {
+                    it.driverName
+                }
+            }
+            else -> {
+                responses.sortedBy {
+                    it.license
+                }
+            }
+        }
+
+        return sortedList
+    }
+
     fun dateTimeFormatter(timestamp: Long): String {
         val date = Date(timestamp * 1000)
         val formatter = SimpleDateFormat("dd MMMM yyyy HH:mm", Locale.getDefault())
